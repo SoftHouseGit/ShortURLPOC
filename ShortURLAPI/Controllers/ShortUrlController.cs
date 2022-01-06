@@ -27,7 +27,9 @@ namespace ShortURLAPI.Controllers
         {
             try
             {
-               return _shortLinkService.GenerateShortLink(longUrl) + "\n Copy this url and pass to the GetLongURL to get the long url";
+                var result = "";
+                result= _shortLinkService.GenerateShortLink(longUrl);
+                return result + "\n Copy this url and pass to the GetLongURL to get the long url";
             }
             catch (Exception ex)
             {
