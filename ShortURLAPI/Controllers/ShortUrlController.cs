@@ -27,7 +27,7 @@ namespace ShortURLAPI.Controllers
         {
             try
             {
-               return _shortLinkService.GenerateShortLink(longUrl);
+               return _shortLinkService.GenerateShortLink(longUrl) + "\n Copy this url and pass to the GetLongURL to get the long url";
             }
             catch (Exception ex)
             {
@@ -39,15 +39,15 @@ namespace ShortURLAPI.Controllers
 
         [HttpGet]
         [Route("GetLongURL")]
-        public void GetLongURL(string shortUrl)
+        public string GetLongURL(string shortUrl)
         {
             try
             {
                 var url = _shortLinkService.GetLongLink(shortUrl);
-                if (url != null)
-                {
-                    Response.Redirect(url);
-                }
+                return url;
+                // because of swagger we need to implement page to consume the api and redirect to the long url so we return url
+                //if url not null
+                //Response.Redirect(url); 
                 //else // Redirect to not found page
             }
             catch (Exception ex)
